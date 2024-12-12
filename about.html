@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Skills Development and Employment Agency</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Newsletter subscription
+            const newsletterForm = document.querySelector('.newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = this.querySelector('input[type="email"]').value;
+                    alert(`Thank you for subscribing with email: ${email}`);
+                    this.reset();
+                });
+            }
+
+            // Sign-Up Popup
+            const signUpBtn = document.querySelector('.sign-up-btn');
+            const popupOverlay = document.querySelector('.sbpopup-overlay');
+            const closeBtn = document.querySelector('.sbclose-btn');
+
+            // Open the Sign-Up Popup
+            if (signUpBtn && popupOverlay) {
+                signUpBtn.addEventListener('click', () => {
+                    popupOverlay.style.display = 'flex';
+                });
+            }
+
+            // Close the Sign-Up Popup
+            if (closeBtn && popupOverlay) {
+                closeBtn.addEventListener('click', () => {
+                    popupOverlay.style.display = 'none';
+                });
+            }
+
+            // Close popup when clicking outside of it
+            if (popupOverlay) {
+                popupOverlay.addEventListener('click', (e) => {
+                    if (e.target === popupOverlay) {
+                        popupOverlay.style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="https://freepngimg.com/thumb/symbol/61606-logo-circle-brand-ibm-download-hd-png.png" alt="DSDEA Logo" class="logo-icon">
+                <div>
+                    <h1 class="logo-title">DSDEA</h1>
+                    <p class="logo-subtitle">Digital Skills Development and Employment Agency</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="main.html">Home</a></li>
+                    <li><a href="main.html#courses">Courses</a></li>
+                    <li><a href="jobs.html">Jobs</a></li>
+                    <li><a href="mentorship.html">Mentorship</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </nav>
+            <button class="sign-up-btn">Sign Up</button>
+        </div>
+    </header>
+
+<main>
+    <section id="about">
+        <h2>About Us</h2>
+        <div class="carousel-container">
+            <div class="carousel-slide">
+                <img src="https://wallpaperaccess.com/full/210938.jpg" alt="Image 1" class="carousel-image">
+                <img src="https://wallpapercave.com/wp/wp2044743.jpg" alt="Image 2" class="carousel-image">
+                <img src="https://wallpapercave.com/wp/wp2848527.jpg" alt="Image 3" class="carousel-image">
+            </div>
+        </div>
+        <p>DSDEA (Digital Skills Development and Employment Agency) is dedicated to empowering individuals with the essential digital skills needed to thrive in today's technology-driven world. We offer comprehensive training programs, mentorship, and job placement services designed to bridge the gap between education and employment. Our mission is to equip individuals with the knowledge and expertise to succeed in digital careers, fostering growth, innovation, and opportunity for all.</p>
+    </section>
+</main>
+
+
+    <!-- Sign-Up Popup -->
+    <div class="sbpopup-overlay">
+        <div class="sbpopup">
+            <button class="sbclose-btn">X</button>
+            <h2>Sign Up</h2>
+            <form>
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="password" placeholder="Create Password" required>
+                <input type="password" placeholder="Confirm Password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><a href="mailto:kylalagrimas07@gmail.com">Email</a></li>
+                        <li><a href="tel:+1234567890">Phone</a></li>
+                        <li><a href="https://maps.app.goo.gl/rGRrGiaXRzGFwLFv8">Address</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <ul>
+                        <li><a href="https://www.facebook.com/mark.joshua.gadia.2024">Facebook</a></li>
+                        <li><a href="https://www.instagram.com/ms_ma.kyla/">Instagram</a></li>
+                        <li><a href="https://sti.edu/">LinkedIn</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Subscribe</h3>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button class="subscribe-btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2024 DSDEA. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

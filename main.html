@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Skills Development and Employment Agency</title>
+    <link rel="stylesheet" href="styles.css">
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Newsletter subscription
+        const newsletterForm = document.querySelector('.newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('input[type="email"]').value;
+                alert(`Thank you for subscribing with email: ${email}`);
+                this.reset();
+            });
+        }
+
+        // Feature card hover effect
+        const featureCards = document.querySelectorAll('.feature-card');
+        featureCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-5px)';
+                card.style.boxShadow = '0 6px 12px rgba(0, 0, 0, 0.15)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+                card.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+            });
+        });
+
+        // Pop-up functionality
+        const enrollButtons = document.querySelectorAll('.enroll-btn');
+        const enrollPopup = document.getElementById('enrollPopup');
+        const thankYouPopup = document.getElementById('thankYouPopup');
+        const submitEnroll = document.getElementById('submitEnroll');
+        const closeThankYou = document.getElementById('closeThankYou');
+        const thankYouMessage = document.getElementById('thankYouMessage');
+
+        enrollButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                enrollPopup.style.display = 'flex';
+            });
+        });
+
+        submitEnroll.addEventListener('click', () => {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+
+            if (name && email) {
+                enrollPopup.style.display = 'none';
+                thankYouMessage.textContent = `Thank you for enrolling, ${name}! We have sent a confirmation to: ${email}`;
+                thankYouPopup.style.display = 'flex';
+            } else {
+                alert('Please fill in all fields.');
+            }
+        });
+
+        closeThankYou.addEventListener('click', () => {
+            thankYouPopup.style.display = 'none';
+        });
+
+        // Close enroll popup
+        const closeEnroll = document.getElementById('closeEnroll');
+        if (closeEnroll) {
+            closeEnroll.addEventListener('click', () => {
+                enrollPopup.style.display = 'none';
+            });
+        }
+
+        // Open enroll popup (example)
+        const openEnrollPopupButton = document.querySelector('.enroll-btn');
+        if (openEnrollPopupButton) {
+            openEnrollPopupButton.addEventListener('click', () => {
+                enrollPopup.style.display = 'flex';
+            });
+        }
+
+        // Handle enroll submission
+        const submitEnrollAgain = document.getElementById('submitEnroll');
+        if (submitEnrollAgain) {
+            submitEnrollAgain.addEventListener('click', () => {
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                if (name && email) {
+                    enrollPopup.style.display = 'none';
+                    document.getElementById('thankYouMessage').textContent = `Thank you for enrolling, ${name}!`;
+                    thankYouPopup.style.display = 'flex';
+                } else {
+                    alert('Please fill out all fields.');
+                }
+            });
+        }
+
+        // Sign-Up Popup functionality
+        const signUpBtn = document.querySelector('.sign-up-btn');
+        const popupOverlay = document.querySelector('.sbpopup-overlay');
+        const closeBtn = document.querySelector('.sbclose-btn');
+
+        if (signUpBtn && popupOverlay) {
+            signUpBtn.addEventListener('click', () => {
+                popupOverlay.style.display = 'flex';
+            });
+        }
+
+        if (closeBtn && popupOverlay) {
+            closeBtn.addEventListener('click', () => {
+                popupOverlay.style.display = 'none';
+            });
+        }
+
+        // Close popup when clicking outside of it
+        if (popupOverlay) {
+            popupOverlay.addEventListener('click', (e) => {
+                if (e.target === popupOverlay) {
+                    popupOverlay.style.display = 'none';
+                }
+            });
+        }
+
+        // Hero Carousel functionality
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.hero-image');
+        const totalImages = images.length;
+        const carouselImages = document.querySelector('.hero-carousel-images');
+
+        // Auto sliding every 3 seconds
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % totalImages;
+            updateCarousel();
+        }, 3000);
+
+        // Function to update the position of the carousel
+        function updateCarousel() {
+            if (carouselImages) {
+                carouselImages.style.transition = 'transform 0.5s ease-in-out';
+                carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+        }
+
+        // Click to navigate images (Optional swipe effect)
+        const carousel = document.querySelector('.hero-carousel');
+        if (carousel) {
+            carousel.addEventListener('click', (e) => {
+                const rect = e.target.getBoundingClientRect();
+                const carouselWidth = e.target.offsetWidth;
+
+                if (e.clientX < rect.left + carouselWidth / 2) {
+                    currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+                } else {
+                    currentIndex = (currentIndex + 1) % totalImages;
+                }
+                updateCarousel();
+            });
+        }
+    });
+</script>
+
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="https://freepngimg.com/thumb/symbol/61606-logo-circle-brand-ibm-download-hd-png.png" alt="DSDEA Logo" class="logo-icon">
+                <div>
+                    <h1 class="logo-title">DSDEA</h1>
+                    <p class="logo-subtitle">Digital Skills Development and Employment Agency</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="main.html">Home</a></li>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="jobs.html">Jobs</a></li>
+                    <li><a href="mentorship.html">Mentorship</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </nav>
+            <button class="sign-up-btn">Sign Up</button>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>Empowering Communities Through Digital Skills</h2>
+                    <p>Join us in bridging the digital divide and creating pathways to employment.</p>
+                    <a href="jobs.html"><button class="cta-btn">Get Started</button></a>
+                </div>
+
+        <div class="hero-carousel" id="hero-carousel">
+            <div class="hero-carousel-images">
+                <div class="hero-image">
+                    <img src="https://www.dpidirect.com/wp-content/uploads/2016/05/digital_signage-1.jpg">
+                </div>
+                <div class="hero-image">
+                    <img src="https://i2-prod.dailystar.co.uk/incoming/article22745122.ece/ALTERNATES/s615b/0_Touchng-digital-screen-with-finger-icon-on-virtual-screen.jpg" alt="Technology in education">
+                </div>
+                <div class="hero-image">
+                    <img src="https://newsroom.unsw.edu.au/sites/default/files/styles/full_width__2x/public/thumbnails/image/shutterstock_258265922_1.jpg">
+                </div>
+            </div>
+        </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="container">
+                <h2>Key Features</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <img src="https://img.freepik.com/premium-vector/square-technology-background-design_1189-1841.jpg" alt="Digital Skills Training Icon" class="feature-icon">
+                        <h3>Digital Skills Training</h3>
+                        <p>Access free courses ranging from basic computer literacy to advanced technical skills.</p>
+
+                    </div>
+                    <div class="feature-card">
+                        <img src="https://img.freepik.com/free-vector/square-technology-background_1189-600.jpg" alt="Job Matching Portal Icon" class="feature-icon">
+                        <h3>Job Matching Portal</h3>
+                        <p>Connect with employers looking for your unique skill set.</p>
+                    </div>
+                    <div class="feature-card">
+                        <img src="https://png.pngtree.com/thumb_back/fh260/20161021/pngtree-Web-Icon-3d-Button-photo-582294.jpg" alt="Mentorship Programs Icon" class="feature-icon">
+                        <h3>Mentorship Programs</h3>
+                        <p>Get guidance from industry professionals to boost your career.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="courses" class="courses">
+            <div class="container">
+                <h2>Featured Courses</h2>
+                <div class="course-grid">
+                    <div class="course-card">
+                        <h3>Introduction to Web Development</h3>
+                        <p>Duration: 8 weeks | Level: Beginner</p>
+                        <button class="enroll-btn">Enroll Now</button>
+                    </div>
+                    <div class="course-card">
+                        <h3>Data Analysis with Python</h3>
+                        <p>Duration: 10 weeks | Level: Intermediate</p>
+                        <button class="enroll-btn">Enroll Now</button>
+                    </div>
+                    <div class="course-card">
+                        <h3>UX/UI Design Fundamentals</h3>
+                        <p>Duration: 6 weeks | Level: Beginner</p>
+                        <button class="enroll-btn">Enroll Now</button>
+                    </div>
+                    <div class="course-card">
+                        <h3>Advanced Machine Learning</h3>
+                        <p>Duration: 12 weeks | Level: Advanced</p>
+                        <button class="enroll-btn">Enroll Now</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+<!-- Pop-ups -->
+<div id="enrollPopup" class="popup-overlay">
+    <div class="popup">
+        <h3>
+            Enroll Now
+            <span class="close-popup" id="closeEnroll">x</span>
+        </h3>
+        <input type="text" id="name" placeholder="Enter your name" required />
+        <input type="email" id="email" placeholder="Enter your email" required />
+        <button id="submitEnroll">Enroll</button>
+    </div>
+</div>
+
+<div id="thankYouPopup" class="popup-overlay">
+    <div class="popup">
+        <h3 id="thankYouMessage"></h3>
+        <button id="closeThankYou">Close</button>
+    </div>
+</div>
+
+    <!-- Sign-Up Popup -->
+    <div class="sbpopup-overlay">
+        <div class="sbpopup">
+            <button class="sbclose-btn">X</button>
+            <h2>Sign Up</h2>
+            <form>
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="password" placeholder="Create Password" required>
+                <input type="password" placeholder="Confirm Password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><a href="mailto:kylalagrimas07@gmail.com">Email</a></li>
+                        <li><a href="tel:+1234567890">Phone</a></li>
+                        <li><a href="https://maps.app.goo.gl/rGRrGiaXRzGFwLFv8">Address</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <ul>
+                        <li><a href="https://www.facebook.com/mark.joshua.gadia.2024">Facebook</a></li>
+                        <li><a href="https://www.instagram.com/ms_ma.kyla/">Instagram</a></li>
+                        <li><a href="https://sti.edu/">LinkedIn</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Subscribe</h3>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button class="subscribe-btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2024 DSDEA. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

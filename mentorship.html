@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Skills Development and Employment Agency</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Newsletter subscription
+            const newsletterForm = document.querySelector('.newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = this.querySelector('input[type="email"]').value;
+                    alert(`Thank you for subscribing with email: ${email}`);
+                    this.reset();
+                });
+            }
+
+            // Mentor Sign-Up Popup handling
+            const signUpNowBtn = document.querySelector('.mentorship-sign-up-btn');
+            const mentorPopupOverlay = document.getElementById('mentorSignUpPopup');
+            const mentorCloseBtn = document.getElementById('mentorClosePopup');
+            const mentorSignUpForm = document.getElementById('mentorSignUpForm');
+
+            // Open the Mentor Sign-Up Popup
+            if (signUpNowBtn && mentorPopupOverlay) {
+                signUpNowBtn.addEventListener('click', () => {
+                    mentorPopupOverlay.style.display = 'flex'; // Show the mentor pop-up
+                });
+            }
+
+            // Close the Mentor Sign-Up Popup
+            if (mentorCloseBtn && mentorPopupOverlay) {
+                mentorCloseBtn.addEventListener('click', () => {
+                    mentorPopupOverlay.style.display = 'none'; // Hide the mentor pop-up
+                });
+            }
+
+            // Close the Mentor pop-up if clicking outside
+            if (mentorPopupOverlay) {
+                mentorPopupOverlay.addEventListener('click', (e) => {
+                    if (e.target === mentorPopupOverlay) {
+                        mentorPopupOverlay.style.display = 'none'; // Hide the mentor pop-up
+                    }
+                });
+            }
+
+            // Handle Mentor Sign-Up Form Submission
+            if (mentorSignUpForm) {
+                mentorSignUpForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const fullName = document.getElementById('fullName').value;
+                    const email = document.getElementById('email').value;
+                    const techField = document.getElementById('techField').value;
+                    alert(`Thank you for signing up, ${fullName}! We will get in touch with you at ${email} in the field of ${techField}.`);
+                    mentorPopupOverlay.style.display = 'none'; // Close the pop-up
+                    mentorSignUpForm.reset(); // Reset form
+                });
+            }
+
+            // Sign-Up Popup handling
+            const signUpBtn = document.querySelector('.sign-up-btn');
+            const signUpPopupOverlay = document.querySelector('.sbpopup-overlay');
+            const closeSignUpBtn = document.querySelector('.sbclose-btn');
+            const signUpForm = document.querySelector('.sbpopup form');
+
+            // Open the Sign-Up Popup
+            if (signUpBtn && signUpPopupOverlay) {
+                signUpBtn.addEventListener('click', () => {
+                    signUpPopupOverlay.style.display = 'flex'; // Show the sign-up pop-up
+                });
+            }
+
+            // Close the Sign-Up Popup
+            if (closeSignUpBtn && signUpPopupOverlay) {
+                closeSignUpBtn.addEventListener('click', () => {
+                    signUpPopupOverlay.style.display = 'none'; // Hide the sign-up pop-up
+                });
+            }
+
+            // Close the sign-up pop-up if clicking outside
+            if (signUpPopupOverlay) {
+                signUpPopupOverlay.addEventListener('click', (e) => {
+                    if (e.target === signUpPopupOverlay) {
+                        signUpPopupOverlay.style.display = 'none'; // Hide the sign-up pop-up
+                    }
+                });
+            }
+
+            // Handle Sign-Up Form Submission
+            if (signUpForm) {
+                signUpForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const fullName = document.querySelector('.sbpopup input[type="text"]').value;
+                    const email = document.querySelector('.sbpopup input[type="email"]').value;
+                    const password = document.querySelector('.sbpopup input[type="password"]').value;
+                    alert(`Thank you for signing up, ${fullName}! You are now registered with the email: ${email}.`);
+                    signUpPopupOverlay.style.display = 'none'; // Close the sign-up pop-up
+                    signUpForm.reset(); // Reset form
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="https://freepngimg.com/thumb/symbol/61606-logo-circle-brand-ibm-download-hd-png.png" alt="DSDEA Logo" class="logo-icon">
+                <div>
+                    <h1 class="logo-title">DSDEA</h1>
+                    <p class="logo-subtitle">Digital Skills Development and Employment Agency</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="main.html">Home</a></li>
+                    <li><a href="main.html#courses">Courses</a></li>
+                    <li><a href="jobs.html">Jobs</a></li>
+                    <li><a href="mentorship.html">Mentorship</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </nav>
+            <button class="sign-up-btn">Sign Up</button>
+        </div>
+    </header>
+
+<main>
+    <section id="mentorship">
+        <h2>Get Guidance from Industry Professionals</h2>
+        <p>Our mentorship program connects you with experienced professionals in your field to help guide your career development. Whether you're looking for advice on job opportunities, skill development, or navigating the job market, our mentors are here to help.</p>
+        
+        <div class="mentorship-program">
+            <h3>How It Works</h3>
+            <p>Our program is designed to provide personalized support and valuable insights from seasoned professionals. Here's how it works:</p>
+            <ul>
+                <li><strong>Step 1:</strong> Sign up for the mentorship program by filling out a simple form.</li>
+                <li><strong>Step 2:</strong> Get matched with an industry expert based on your career goals and interests.</li>
+                <li><strong>Step 3:</strong> Start receiving guidance through one-on-one sessions and group workshops.</li>
+                <li><strong>Step 4:</strong> Achieve your career milestones with the support of your mentor.</li>
+            </ul>
+        </div>
+
+        <div class="mentor-cta">
+            <h3>Ready to Get Started?</h3>
+            <p>Fill out the form below to sign up for the mentorship program and begin your journey toward career success.</p>
+            <button class="mentorship-sign-up-btn">Sign Up Now</button>
+        </div>
+    </section>
+
+    <!-- Sign-Up Popup -->
+    <div class="mentor-popup-overlay" id="mentorSignUpPopup">
+        <div class="mentorpopup">
+            <button class="mentor-close-btn" id="mentorClosePopup">X</button>
+            <h2>Sign Up for Mentorship</h2>
+            <form id="mentorSignUpForm">
+                <input type="mentor_text" placeholder="Full Name" id="fullName" required>
+                <input type="mentor_email" placeholder="Email Address" id="email" required>
+                <label for="techField">Tech Field</label>
+                <select id="techField" required>
+                    <option value="Software Development">Software Development</option>
+                    <option value="Data Science">Data Science</option>
+                    <option value="Cybersecurity">Cybersecurity</option>
+                    <option value="Artificial Intelligence">Artificial Intelligence</option>
+                    <option value="Web Development">Web Development</option>
+                </select>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</main>
+
+
+
+    <!-- Sign-Up Popup -->
+    <div class="sbpopup-overlay">
+        <div class="sbpopup">
+            <button class="sbclose-btn">X</button>
+            <h2>Sign Up</h2>
+            <form>
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="password" placeholder="Create Password" required>
+                <input type="password" placeholder="Confirm Password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><a href="mailto:kylalagrimas07@gmail.com">Email</a></li>
+                        <li><a href="tel:+1234567890">Phone</a></li>
+                        <li><a href="https://maps.app.goo.gl/rGRrGiaXRzGFwLFv8">Address</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <ul>
+                        <li><a href="https://www.facebook.com/mark.joshua.gadia.2024">Facebook</a></li>
+                        <li><a href="https://www.instagram.com/ms_ma.kyla/">Instagram</a></li>
+                        <li><a href="https://sti.edu/">LinkedIn</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Subscribe</h3>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button class="subscribe-btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2024 DSDEA. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
